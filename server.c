@@ -13,7 +13,6 @@
 
 static bool IS_SERVER_RUNNING = true;
 
-
 int main() {
     int socket_fd;
     int ret_code, on = 1;
@@ -75,7 +74,8 @@ int main() {
 
         fprintf(stdout, "Request:\n%s\n\n", req_buffer);
 
-        char res_buffer[1024] = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 5\r\n\r\nHihi\n";
+        char res_buffer[1024] = "HTTP/1.1 200 OK\r\nContent-Type: "
+                                "text/plain\r\nContent-Length: 5\r\n\r\nHihi\n";
         ret_code = send(accept_fd, res_buffer, sizeof(res_buffer), 0);
         if (ret_code == RET_ERR) {
             fprintf(stderr, "send() failed: %i\n", ret_code);
@@ -92,4 +92,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
